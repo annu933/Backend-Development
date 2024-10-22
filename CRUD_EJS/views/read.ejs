@@ -9,18 +9,40 @@
 </head>
 <body>
     <div class="w-full h-full bg-zinc-900 p-10 text-white">
+        <div class="nav mb-10">
+            <a href="/" class="text-blue-500" >back to home</a>
+        </div>
         <h1 class="text-3xl tracking-tighter mb-3">All Users</h1>
+        <p></p>
         
-        <div class="users">
-            <div class="user max-w-72 p-4 bg-zinc-800 rounded-lg">
-                <div class="w-full h-72 bg-zinc-700 rounded-lg"></div>
-                <h3 class="text-xl mt-3 tracking-tighter">Annu Kashyap</h3>
-                <h3 class="text-zinc-500">annu@gmail.com</h3>
-                <div class="flex gap-3 ">
-                    <a class="text-zinc-600" href="" >Edit User</a>
-                    <a class="text-red-500" href="" >Delete User</a>
-                </div>
-            </div>
+        <div class="users flex flex-wrap gap-3">
+
+            <% if(users.length > 0) { %> 
+                
+
+                <% users.forEach(function(e)  {
+                    %>
+                    <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
+                        <div class="w-full h-72 bg-zinc-700 rounded-lg">
+                            <img class="w-full h-full rounded-lg bg-zinc-700 overflow-hidden" src="<%= e.image %>" alt="" />
+                        </div>
+                        <h3 class="text-xl mt-3 tracking-tighter"><%= e.name %></h3>
+                        <h3 class="text-zinc-500"><%= e.email %></h3>
+                        <div class="flex gap-3 mt-10">
+                            <a class="text-zinc-200" href="/edit/<%= e._id %>" >Edit User</a>
+                            <a class="text-red-500" href="/delete/<%= e._id %>" >Delete User</a>
+                        </div>
+                    </div> 
+                    <%
+                }) %>
+
+                <%} else {%>
+                
+                    <h4>No user yet</h4>
+                <%}
+                %>
+
+           
         </div>
     </div>
 </body>
