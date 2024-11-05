@@ -1,13 +1,13 @@
-<h5>SET-UP</h5>
+<h3>SET-UP</h3>
 
-npm init -y
-npm i express
-npm i ejs
-npm i mongoose
-npm i bcrypt
+<p>npm init -y</p>
+<p>npm i express</p>
+<p>npm i ejs</p>
+<p>npm i mongoose</p>
+<p>npm i bcrypt</p>
 
 <!--boiler-plate code  -->
-<h5>boiler-plate code</h5>
+<h3>boiler-plate code</h3>
 
 const express = require("express)
 const app = express()
@@ -19,38 +19,38 @@ app.get("/",function(req,res){
 app.listen(3000)
 
 <!-- create a user and post model -->
-<h5>create a user and post model</h5>
+<h3>create a user and post model</h3>
 
-create a model folder
-create a user and post.js files
+<p>create a model folder</p>
+<p>create a user and post.js files</p>
 
 <!-- user.js -->
-<h5>user.js</h5>
+<h3>user.js</h3>
 
-require mongoose
-connect mongoose with mongodb://127.0.0.1:27017/databasename
-create a user schema
-export user schema 
+<p>require mongoose</p>
+<p>connect mongoose with mongodb://127.0.0.1:27017/<p>databasename</p>
+<p>create a user schema</p>
+<p>export user schema </p>
 
 <!-- post.js -->
-<h5>post.js</h5>
+<h3>post.js</h3>
 
-require mongoose
-no need to connect with mongodb, because it's already connected with user model
-create post schema
-export post schema
+<p>require mongoose</p>
+<p>no need to connect with mongodb, because it's already <p>connected with user model</p>
+<p>create post schema</p>
+<p>export post schema</p>
 
 
 <!-- app.js -->
-<h5>app.js</h5>
+<h3>app.js</h3>
 
-require userModel
-require postModel
-create a user by default values for now, on "/create" route
-create a post by default value , inclued user id of user, on "/post/create" route
-find user id and store it in variable (user),push the post id to user's posts array
-and save it
-res.send({post,user}) on "/post/create"
+<p>require userModel</p>
+<p>require postModel</p>
+<p>create a user by default values for now, on "/create" route</p>
+<p>create a post by default value , inclued user id of user, on "/post/create" route</p>
+<p>find user id and store it in variable (user),push the post id to user's posts array</p>
+<p>and save it</p>
+<p>res.send({post,user}) on "/post/create"</p>
 
 
 
