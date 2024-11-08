@@ -44,3 +44,14 @@
 <p>Verify if token is present, then only show data</p>
 <p>jwt.verify(req.cookies.token, "shhhh")</p>
 <p>shhhh is secret key, as it is given while creating token</p>
+
+<h2>How to create Post</h2>
+
+<p>Creat a "/profile" route for post and show post data</p>
+<p>make a small form for content</p>
+<p>below form, create card to show post data</p>
+<p>add a middleware to check login or not, on get "/profile" page</p>
+<p>create post and and send to created database for post[postModel]</p>
+<p>payload will be: userid, content</p>
+<p>after created post , push the postid to user database, so that can see post of perticular user</p>
+<p>save and redirect to same route "/profile" , becoz we will show post card here as well as</p>
