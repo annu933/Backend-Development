@@ -17,7 +17,7 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
-// Registered User
+//  --------register user--------
 
 app.post("/register", async (req, res) => {
   const { name, username, email, password, age } = req.body;
@@ -42,7 +42,7 @@ app.post("/register", async (req, res) => {
   });
 });
 
-// Login User
+// --------Login User--------
 
 app.get("/login", function (req, res) {
   res.render("login");
@@ -64,14 +64,14 @@ app.post("/login", async (req, res) => {
   });
 });
 
-// logout user
+// --------logout user--------
 
 app.get("/logout", async (req, res) => {
   res.cookie("token", "");
   res.redirect("/login");
 });
 
-// profile
+// --------read post: create profile page--------
 
 app.get("/profile", isLoggedIn, async (req, res) => {
   let user = await userModel
@@ -79,6 +79,37 @@ app.get("/profile", isLoggedIn, async (req, res) => {
     .populate("posts"); //populate the post field
   res.render("profile", { user });
 });
+
+// --------like post--------
+
+app.get("/like/:id", isLoggedIn, async (req, res) => {
+  let post = await postModel.findOne({ _id: req.params.id }).populate("user");
+  console.log("req.user", req.user);
+  if (post.likes.indexOf(req.user.userid) === -1) {
+    post.likes.push(req.user.userid);
+  } else {
+    post.likes.splice(post.likes.indexOf(req.user.userid), 1);
+  }
+  await post.save();
+  res.redirect("/profile");
+});
+
+// --------update post--------
+
+app.get("/edit/:id", isLoggedIn, async (req, res) => {
+  let post = await postModel.findOne({ _id: req.params.id }).populate("user");
+  res.render("edit", { post });
+});
+
+app.post("/update/:id", isLoggedIn, async (req, res) => {
+  let post = await postModel.findOneAndUpdate(
+    { _id: req.params.id },
+    { content: req.body.content }
+  );
+  res.redirect("/profile");
+});
+
+// --------create post--------
 
 app.post("/post", isLoggedIn, async (req, res) => {
   let user = await userModel.findOne({ email: req.user.email });
@@ -91,6 +122,8 @@ app.post("/post", isLoggedIn, async (req, res) => {
   await user.save();
   res.redirect("/profile");
 });
+
+// --------middleware--------
 
 function isLoggedIn(req, res, next) {
   if (req.cookies.token === "") res.redirect("/login");
